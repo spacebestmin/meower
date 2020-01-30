@@ -36,41 +36,27 @@ function isValidMew(mew) {
 
   //if client ask POST method at /mews, do as followed
 app.post('/mews', (req,res) => {
-    
-    //if the req.body is validate
-    if(isValidMew(req.body)) {
-        //create an object data called mew
-        const mew = {
-            name: req.body.name.toString,
-            content: req.body.content.toString,
-            created: new Date(),
-        };
-        //log it out
-       //console.log(mew);
+  if(isValidMew(req.body)) {
+    const mew = {
+      name: req.body.name.toString,
+      content: req.body.content.toString,
+      created: new Date(),
+    };
 
-
-       //MONGO DB INSERT
-       //The insert() returns an object that contains 
-       //the status of the operation.
-        mews
-        .insert(mew) //insert mew
-        // .then(createdMew => { //this line smell weird...
-        //     console.log(createdMew)}); //who knows what is createdMew and why?
-        .then(createdMew => {
-            console.log("i am logging");
-            console.log(createdMew);
-        })
-        .catch(err => console.log(err));
-        
-    } else{ //if the data is not validate, show en error msg
-        res.status(422);
-        res.json({
-            message: 'Hey! Name and Content are required!'
-
-        });
-
+    mews
+      .insert(mew)
+      .then(createdMew => {
+        //TODO
+      })
+      .catch(err => {
+        console.log(err)
+      });
+    } else {
+      res.status(422);
+      res.json({
+        message: 'Hey! Name and Content are required!'
+      });
     }
-
 });
 
 app.listen(5000, () => {
