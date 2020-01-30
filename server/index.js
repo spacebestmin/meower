@@ -23,7 +23,7 @@ function isValidMew(mew) {
       mew.content && mew.content.toString().trim() !== '' && mew.content.toString().trim().length <= 140;
   }
 
-app.post('/mews', (req,res) => {
+app.post('/mew', (req,res) => {
     //console.log(req.body);
 
     if(isValidMew(req.body)) {

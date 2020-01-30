@@ -2,7 +2,7 @@ console.log('hello world');
 
 const form = document.querySelector('form');
 const loadingElement = document.querySelector('.loading');
-const API_URL = 'http://localhost:5000/mews';
+const API_URL = 'http://localhost:5000/mew';
 loadingElement.style.display = 'none'; 
 
 form.addEventListener('submit', (event) => {
@@ -29,8 +29,10 @@ form.addEventListener('submit', (event) => {
             'content-type': 'application/json'
         }
     })
-    .then(res => res.json())
-    .then(createdMew => console.log(createdMew))
+    .then(response => response.json())
+    .then(createdMew => {
+        console.log(createdMew);
+    });
     
 });
 
