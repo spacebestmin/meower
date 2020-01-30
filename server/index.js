@@ -36,7 +36,9 @@ function isValidMew(mew) {
 
   //if client ask POST method at /mews, do as followed
 app.post('/mews', (req,res) => {
+  console.log('1. POST /mews request');
   if(isValidMew(req.body)) {
+    console.log('2.A. Body is valid');
     const mew = {
       name: req.body.name.toString,
       content: req.body.content.toString,
@@ -46,12 +48,16 @@ app.post('/mews', (req,res) => {
     mews
       .insert(mew)
       .then(createdMew => {
+        console.log('3.A Mew has been created');
+        console.log(createdMew);
         //TODO
       })
       .catch(err => {
+        console.log('3.B Mew creation has failed');
         console.log(err)
       });
     } else {
+      console.log('2.B. Body is invalid');
       res.status(422);
       res.json({
         message: 'Hey! Name and Content are required!'
