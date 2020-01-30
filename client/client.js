@@ -16,8 +16,6 @@ form.addEventListener('submit', (event) => {
         content,
     };
 
-    
-
     form.style.display = 'none'; 
     loadingElement.style.display = ''; 
     //passing the url that we are sending the data
@@ -27,7 +25,7 @@ form.addEventListener('submit', (event) => {
         body: JSON.stringify(mew), 
         //turn it into something that the server can understand
         headers: {
-            'content-type': 'application/json'
+            'content-type': 'application/JSON'
         }
     })
     .then(response => response.json())

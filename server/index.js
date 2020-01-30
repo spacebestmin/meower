@@ -29,8 +29,9 @@ app.get('/', (req, res) => {
 //validation check
 function isValidMew(mew) {
     //if each attributes' data are not enough, return false
-    return mew.name && mew.name.toString().trim() !== '' &&
-      mew.content && mew.content.toString().trim() !== '';
+    // return mew.name && mew.name.toString().trim() !== '' &&
+    //   mew.content && mew.content.toString().trim() !== '';
+    return true;
   }
 
   //if client ask POST method at /mews, do as followed
@@ -45,21 +46,31 @@ app.post('/mews', (req,res) => {
             created: new Date(),
         };
         //log it out
-       console.log(mew);
+       //console.log(mew);
 
+
+       //MONGO DB INSERT
+       //The insert() returns an object that contains 
+       //the status of the operation.
         mews
         .insert(mew) //insert mew
-        .then(createdMew => { //this line smell weird...
-            res.json(createdMew); //who knows what is createdMew and why?
-        });
-        //.catch(err => res.status(400).json("error: " + err));
+        // .then(createdMew => { //this line smell weird...
+        //     console.log(createdMew)}); //who knows what is createdMew and why?
+        .then(createdMew => {
+            console.log("i am logging");
+            console.log(createdMew);
+        })
+        .catch(err => console.log(err));
         
     } else{ //if the data is not validate, show en error msg
         res.status(422);
         res.json({
             message: 'Hey! Name and Content are required!'
+
         });
+
     }
+
 });
 
 app.listen(5000, () => {
