@@ -2,7 +2,7 @@ console.log('hello world');
 
 const form = document.querySelector('form');
 const loadingElement = document.querySelector('.loading');
-const API_URL = 'http://localhost:5000/mew';
+const API_URL = 'http://localhost:5000/mews';
 loadingElement.style.display = 'none'; 
 
 form.addEventListener('submit', (event) => {
@@ -16,6 +16,7 @@ form.addEventListener('submit', (event) => {
         content,
     };
 
+    
 
     form.style.display = 'none'; 
     loadingElement.style.display = ''; 
@@ -24,7 +25,7 @@ form.addEventListener('submit', (event) => {
     fetch(API_URL, {
         method: 'POST',
         body: JSON.stringify(mew), 
-        //server parser can understand stringed json data
+        //turn it into something that the server can understand
         headers: {
             'content-type': 'application/json'
         }
