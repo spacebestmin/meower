@@ -1,0 +1,7 @@
+running static server :
+    client/live-server
+
+backend server :
+    server /nodemon server
+
+    

@@ -13,19 +13,25 @@ form.addEventListener('submit', (event) => {
 
     const mew = {
         name,
-        content
+        content,
     };
-    
+
     form.style.display = 'none'; 
     loadingElement.style.display = ''; 
     //passing the url that we are sending the data
+    
     fetch(API_URL, {
         method: 'POST',
         body: JSON.stringify(mew), 
-        //server parser can understand stringed json data
+        //turn it into something that the server can understand
         headers: {
-            'content-type': 'application/json'
+            'content-type': 'application/JSON'
         }
+    })
+    .then(response => response.json())
+    .then(createdMew => {
+        console.log(createdMew);
     });
+    
 });
 
